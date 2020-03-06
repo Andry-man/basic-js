@@ -1,51 +1,15 @@
-module.exports = function createDreamTeam(name) {
-    let answer = [];
-    let answerString = [];
-    let finAnswer = [];
-    let ann = [];
-    let finA = [];
-    var re = / /gi;
-    let stri = [];
-    let an = '';
-    if (typeof name == "number" ) {
-        return false;
+module.exports = function createDreamTeam(members) {
+    let answer = members;
+    if (!Array.isArray(members)) { // return false если прилитает не массив
+    return false;
     }
-    if (typeof name == "boolean" ) {
-        return false;
-    }
-    if (Array.isArray(name) == false ) {
-        return false;
-    }
-    for (let i = 0; i< name.length; i++) {
-        if (typeof name[i] === "number" ) {
-            return false;
-        }
-        if (typeof name[i] === "undefined" ) {
-            return false;
-        }
-        if ( name[i] === "null" ) {
-            return false;
-        }
-        if (typeof name[i] === "boolean" ) {
-            return false;
-        }
-        if (Array.isArray(name) === false ) {
-            return false;
-        }
-        answerString.push(name[i]);
-        finAnswer.push(answerString[i].trim())
-    }
-    for (let index = 0; index < finAnswer.length; index++) {
-       stri.push(finAnswer[index][0])
-    }
-    for (let ind = 0; ind < stri.length; ind++) {
-        stri.sort()
-        an+=stri[ind].toUpperCase()
+    let matrix = [];
+     return answer.reduce((arr, item) => { // проверяет каждую строку массива на typeof === string
+        if (typeof item === 'string') { //пушит первую букву в строке (делает большой) пушит в массив, и возвращает его
+            matrix.push(item.trim()[0].toUpperCase());
+           }
+           return matrix; 
+          },matrix).sort().join(''); // сортирует убирает пробелы
         
-    }
-    return an;
-
-};
-
-
-//разбить arr[0] запятыми на символы, парсить его на нули
+        
+    };
